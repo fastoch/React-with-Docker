@@ -61,9 +61,38 @@ Now we need to write some commands in this Dockerfile so that Docker knows how i
 ```dockerfile
 FROM node:20-alpine
 
+WORKDIR /myReactApp
+
+COPY package*.json .
+
+RUN npm install
+
+COPY . .
 ```
 
+### Explanation of our dockerfile
 
-@5/24
+The first line sets the **base image** for the Docker container, which in our case will be a lightweight Linux system having Node and npm installed.   
+The alpine image is derived from Alpine Linux, known for its small size, helping to keep the final image size down.  
+
+The next instruction sets the **working directory** inside the container to /myReactApp.  
+Subsequent commands, like COPY, will be executed in this directory. If the directory doesn't exist, Docker will create it.  
+
+The next line copies the package.json and package-lock.json files from your project's root directory to the working directory (/myReactApp) in the container.  
+The `.` notation means "current folder" on any Linux system.  
+
+The next line tells docker to run the specified command.  
+In our case, it will install all the dependencies needed to run our app.  
+Side note: the list of dependencies is stored in the package.json file located at the root of your project.  
+
+Finally, we ask Docker to copy all the other files from our project folder (hosted on our local machine) to the working directory that will be located inside of our Docker container.  
+
+... HOW NOT TO INCLUDE THE NODE_MODULES folder ...
+
+
+
+
+
+@6/24
 ---
 EOF
