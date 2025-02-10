@@ -36,8 +36,18 @@ Which means you no longer have to worry about your app working fine on your mach
 
 - start VS Code
 - clone this repo: https://github.com/piyush-eon/tanstack-query-weather-app
+- install Docker
+  - `sudo pacman -S docker docker-compose docker-buildx` on Arch Linux)
+  - To enable Docker to run on boot: `sudo systemctl enable docker.service`
+  - To start it manually: `sudo systemctl start docker.service`
+  - to ensure it is running: `systemctl status docker`
 - 
-- 
+
+>[!note]
+>**docker**: The Docker engine itself
+>**docker-compose**: A tool for managing multi-container Docker applications using Compose files
+>**docker-buildx**: A CLI tool extending Docker build capabilities with new features, allowing you to build container images for multiple platforms
+
 
 
 @2/24
