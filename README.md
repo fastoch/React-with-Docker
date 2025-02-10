@@ -54,7 +54,7 @@ Which means you no longer have to worry about your app working fine on your mach
 
 ---
 
-## Our first Dockerfile
+# Our first Dockerfile
 
 In VS Code, create a file at the root of your React project and name it `Dockerfile`.  
 Now we need to write some commands in this Dockerfile so that Docker knows how it is supposed to run our application: 
@@ -68,9 +68,11 @@ COPY package*.json .
 RUN npm install
 
 COPY . .
+
+EXPOSE 5173
 ```
 
-### Explanation of our dockerfile
+## Explanation of our dockerfile
 
 The first line sets the **base image** for the Docker container, which in our case will be a lightweight Linux system having Node and npm installed.   
 The alpine image is derived from Alpine Linux, known for its small size, helping to keep the final image size down.  
@@ -85,14 +87,40 @@ The next line tells docker to run the specified command.
 In our case, it will install all the dependencies needed to run our app.  
 Side note: the list of dependencies is stored in the package.json file located at the root of your project.  
 
-Finally, we ask Docker to copy all the other files from our project folder (hosted on our local machine) to the working directory that will be located inside of our Docker container.  
+Then, we ask Docker to copy all of the remaining files from our project folder (hosted on our local machine) to the working directory that will be located inside our Docker container.  
 
-... HOW NOT TO INCLUDE THE NODE_MODULES folder ...
+After that, we expose the port on which our app will run, so that it can be accessed from outside the docker container.   
+If we have created our app using **Vite**, our dev server will be available at http://localhost:5173/   
+For older apps built using CRA (create react app), the port number will be 3000.  
+
+And finally, ... how to start our App when we start the docker image ...   
+
+
+Note that `RUN` executes commands during the Docker image build process. Each `RUN` instruction adds a new layer to the Docker image.  
+It is used to install software packages, set environment variables, and perform configurations needed for the application.  
+
+While `CMD` specifies the default command to run when a container is started from the Docker image.
+
+---
+
+## Important note
+
+When we run `npm install`, this creates a `node_modules` folder.  
+This folder contains all the external modules and dependencies required by your Node.js project.  
+You don't want to copy this folder to your container, which is why you need to create a `.dockerignore` file at the root of your project.  
+This is the same logic as including the `node_modules` folder inside our `.gitignore` file.  
+
+Inside the `.dockerignore` file, write the following and save:
+```.dockerignore
+node_modules
+```
+
+---
 
 
 
 
 
-@6/24
+@8/24
 ---
 EOF
