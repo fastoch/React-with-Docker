@@ -70,6 +70,8 @@ RUN npm install
 COPY . .
 
 EXPOSE 5173
+
+CMD [ "npm","run","dev" ]
 ```
 
 ## Explanation of our dockerfile
@@ -93,8 +95,9 @@ After that, we expose the port on which our app will run, so that it can be acce
 If we have created our app using **Vite**, our dev server will be available at http://localhost:5173/   
 For older apps built using CRA (create react app), the port number will be 3000.  
 
-And finally, ... how to start our App when we start the docker image ...   
+And finally, we use `CMD` to start our App (dev server) when we start the docker image.  
 
+---
 
 Note that `RUN` executes commands during the Docker image build process. Each `RUN` instruction adds a new layer to the Docker image.  
 It is used to install software packages, set environment variables, and perform configurations needed for the application.  
@@ -116,6 +119,17 @@ node_modules
 ```
 
 ---
+
+## DO NOT FORGET THE .env FILE
+
+If your project contains an `.env` file, you need to create this file at the root of your project.  
+Then, add the `VITE_APPNAME_API_KEY=<value>` to this file.  
+
+---
+
+# Time to dockerize our App
+
+
 
 
 
