@@ -171,6 +171,10 @@ We need to run all of these services together, and for that we need a `docker-co
 ```yml
 version: '3.8'
 
+services:
+  frontend:
+
+  backend: 
 ```
 
 ## Explaining the docker-compose file
@@ -179,6 +183,6 @@ version: '3.8'
 
 
 
-@12/24
+@13/24
 ---
 EOF
