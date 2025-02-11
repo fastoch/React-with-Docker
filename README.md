@@ -122,13 +122,34 @@ node_modules
 
 ## DO NOT FORGET THE .env FILE
 
-If your project contains an `.env` file, you need to create this file at the root of your project.  
-Then, add the `VITE_APPNAME_API_KEY=<value>` to this file.  
+The `.env` file is a configuration file that stores environment-specific variables, such as database credentials, API keys, and global constants.  
+For obvious reasons, it's best practice to keep this kind of data separate from the application code, in a dedicated `.env` file.
+
+If your project does not contain a `.env` file yet, you need to create this file at the root of your project.  
+Then, add the environment variables your app needs to this file.
+
+## Modify the package.json file
+
+We need to make sure our `dev` script (the one in `npm run dev`) can run on any machine, regardless of its IP address.  
+For that, we modify the dev script by adding a `--host` flag:
+```json
+"scripts": {
+  "dev": "vite --host 0.0.0.0",
+  ...
+}
+```
 
 ---
 
 # Time to dockerize our App
 
+- from a terminal, `cd` into your project folder, and run `docker build -t appName:dev .`
+  - the -t option allows us to tag the image with a unique identifier
+  - in the above example, we provide the app name and we indicate it is the dev environment (to differentiate from the prod environment)
+  - the final dot indicates the location of all the files needed to run our app, meaning "the current folder" 
+- if the docker file was not named "dockerfile", then you'd need to add `-f fileName` to the previous command
+
+Once your docker image has been created, run `docker images` to display all available images.  
 
 
 
