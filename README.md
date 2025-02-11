@@ -167,6 +167,14 @@ In the real world, your app might also contain a backend, not only the React fro
 We need to run all of these services together, and for that we need a `docker-compose.yml` file.  
 
 - at the root of our project folder, let's create a new file called `docker-compose.yml`
+- Here's an example of what it might contain:
+```yml
+version: '3.8'
+
+```
+
+## Explaining the docker-compose file
+
 - 
 
 
