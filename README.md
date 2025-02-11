@@ -74,7 +74,7 @@ EXPOSE 5173
 CMD [ "npm","run","dev" ]
 ```
 
-## Explanation of our dockerfile
+## Explainging the dockerfile
 
 The first line sets the **base image** for the Docker container, which in our case will be a lightweight Linux system having Node and npm installed.   
 The alpine image is derived from Alpine Linux, known for its small size, helping to keep the final image size down.  
@@ -106,7 +106,7 @@ While `CMD` specifies the default command to run when a container is started fro
 
 ---
 
-## Important note
+## About the node_modules folder
 
 When we run `npm install`, this creates a `node_modules` folder.  
 This folder contains all the external modules and dependencies required by your Node.js project.  
@@ -151,11 +151,17 @@ For that, we modify the dev script by adding a `--host` flag:
 
 Once your docker image has been created, run `docker images` to display all available images.  
 
+# Let's use our newly created image
+
+A Docker image is a read-only template or blueprint used to create containers.  
+It contains the application, libraries, dependencies, tools, and other files needed for a container to run.  
+
+To run a container built from our image: `docker run -p 5173:5173 --env-file .env appName:dev`
+- the -p option maps port 5173 on the host machine to port 5173 on the Docker container
+- This allows you to access an application running inside the container on port 5173 via 'localhost:5173' in your web browser
 
 
 
-
-
-@8/24
+@12/24
 ---
 EOF
