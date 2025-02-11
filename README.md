@@ -135,7 +135,6 @@ For that, we modify the dev script by adding a `--host` flag:
 ```json
 "scripts": {
   "dev": "vite --host 0.0.0.0",
-  ...
 }
 ```
 
@@ -159,6 +158,16 @@ It contains the application, libraries, dependencies, tools, and other files nee
 To run a container built from our image: `docker run -p 5173:5173 --env-file .env appName:dev`
 - the -p option maps port 5173 on the host machine to port 5173 on the Docker container
 - This allows you to access an application running inside the container on port 5173 via 'localhost:5173' in your web browser
+
+---
+
+# How apps are dockerized in the real world
+
+In the real world, your app might also contain a backend, not only the React frontend part.  
+We need to run all of these services together, and for that we need a `docker-compose.yml` file.  
+
+- at the root of our project folder, let's create a new file called `docker-compose.yml`
+- 
 
 
 
