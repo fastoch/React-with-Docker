@@ -211,11 +211,13 @@ There are VPS (Virtual Private Server) hosting providers: Hostinger, Linode, Ion
   - add a passphrase for more security
   - `cd ~/.ssh` or `cd <your_SSH_key_location>`
   - `ls` to check the presence of your SSH key pair in the current folder
-  - `cat id_ed25519.pub`
+  - `cat id_ed25519.pub` to display the public key in your terminal
+  - copy the public key and add it to your VPS configuration 
+- provide the root pwd that will be used to log in to your VPS
+- your VPS provider might take some time to set up your new VPS
 
 
 
-
-@17/24
+@19/24
 ---
 EOF
