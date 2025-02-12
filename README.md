@@ -11,14 +11,15 @@ It gives you a massive advantage over developers who don't have this skill.
 
 # What we'll learn
 
-- How to dockerize a React application using **Dockerfile** along with **Docker Compose**
+- How to dockerize a React application using **dockerfile** along with **docker-compose**
 - How to deploy this dockerized app on a private server (no Netlify, no Vercel)
 - How the apps are actually deployed in the real world
 
 # What is Docker?
 
-Docker allows you to separate your applications from your infrastructure so you can deliver software quickly.  
-By taking advantage of Docker's methodologies, you can significantly reduce the delay between writing code and running it in production.  
+Docker allows you to separate your application from your infrastructure so you can deliver software quickly.  
+By encapsulating an application and its dependencies within a lightweight container, Docker empowers developers to create consistent, isolated environments  
+that function seamlessly across various computing environments, from development to production.  
 
 Imagine that you're building a React app, it probably requires various different things to run properly.  
 For example, there might be certain dependencies who run at a specific Node version, let's say Node 19.  
@@ -196,10 +197,21 @@ services:
 - once your `docker-compose.yml` file is ready, run `docker compose up`
   - this will build your frontend and backend services, handle the network config for you, and then it will create a Docker container in which your app will be running
 
+---
+
 ## Hosting our app on a VPS
   
 There are VPS (Virtual Private Server) hosting providers: Hostinger, Linode, Ionos, Kamatera, etc.  
-
+- once you have subscribed to one of them, you need to setup your server
+- you'll probably need to select the server location, choose the closest to you or your audience
+- select your OS, with Docker pre-installed if possible
+- generate an SSH key pair locally and add the public SSH key to your VPS so you can access it securely
+  - for that, open a terminal and run `ssh-keygen -t ed25519 -C "comment_to_identifiy_the_key"`
+  - choose where to save the key on your local machine
+  - add a passphrase for more security
+  - `cd ~/.ssh` or `cd <your_SSH_key_location>`
+  - `ls` to check the presence of your SSH key pair in the current folder
+  - `cat id_ed25519.pub`
 
 
 
