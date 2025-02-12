@@ -199,7 +199,9 @@ services:
 
 ---
 
-## Hosting our app on a VPS
+# Hosting our app on a VPS
+
+## Setting up a VPS
   
 There are VPS (Virtual Private Server) hosting providers: Hostinger, Linode, Ionos, Kamatera, etc.  
 - once you have subscribed to one of them, you need to setup your server
@@ -215,14 +217,34 @@ There are VPS (Virtual Private Server) hosting providers: Hostinger, Linode, Ion
   - copy the public key and add it to your VPS configuration 
 - provide the root pwd that will be used to log in to your VPS
 - your VPS provider might take a few minutes to set up your new VPS
+
+## SSH into the VPS
+
 - once your VPS is ready, copy its public IP address and use it in the following command:
 ```bash
-ssh root@<IP_address> 
+ssh root@<VPS_IP_address> 
 ```
 - enter the SSH passphrase
 - once connected to your VPS via SSH, make sure Docker is installed with `docker --version`
 
+## Transfer our project files to the VPS
 
-@20/24
+Now, you need to transfer all the files needed for running your application to this VPS.
+  - once connected to your VPS via SSH, create a project folder on your VPS: `mkdir app_name`
+  - place yourself inside this folder: `cd app_name`
+  - open a new terminal to transfer the project files from your local machine to the VPS
+    - `cd` into your local project folder
+    - run `scp -r "/path/to/local/project/folder" root@<VPS_IP_address>:~/app_name` 
+
+Now you can go back to the terminal where you're connected to the VPS via SSH, and `cd` into your remote project folder.  
+You can run `ls` and `ls -a` to make sure all files have been properly transferred to the VPS.  
+
+## Building our Docker image on the VPS
+
+Since our app is very small, we won't need docker-compose.  
+- ssh into your VPS
+- cd into your remote project folder
+- run `docker buildx build --platform linux/amd64 -t app_name:dev`
+
 ---
 EOF
