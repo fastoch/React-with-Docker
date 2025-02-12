@@ -239,15 +239,17 @@ Now, you need to transfer all the files needed for running your application to t
 Now you can go back to the terminal where you're connected to the VPS via SSH, and `cd` into your remote project folder.  
 You can run `ls` and `ls -a` to make sure all files have been properly transferred to the VPS.  
 
-## Building our Docker image on the VPS
+## Building  and running our Docker image on the VPS
 
 Since our app is very small, we won't need docker-compose.  
 - ssh into your VPS
 - cd into your remote project folder
 - run `docker buildx build --platform linux/amd64 -t app_name:dev .`
 - run `docker images` to make sure the building process completed successfully
-- once the image has been built, run your app with `docker run `
-  - the `-d` option is to run the image in detached mode so I can continue using my terminal 
+- once the image has been built, run your app with `docker run -d -p 5173:5173 --env-file .env app_name:dev`
+  - the `-d` option is to run the image in **detached mode** so I can continue using my terminal 
+- open a web browser, paste the public IP address of your VPS in the address bar and append `:5173` at the end
+- you might get a "location error" message because we need to purchase a domain for the VPS
 
 ---
 EOF
