@@ -214,10 +214,15 @@ There are VPS (Virtual Private Server) hosting providers: Hostinger, Linode, Ion
   - `cat id_ed25519.pub` to display the public key in your terminal
   - copy the public key and add it to your VPS configuration 
 - provide the root pwd that will be used to log in to your VPS
-- your VPS provider might take some time to set up your new VPS
+- your VPS provider might take a few minutes to set up your new VPS
+- once your VPS is ready, copy its public IP address and use it in the following command:
+```bash
+ssh root@<IP_address> 
+```
+- enter the SSH passphrase
+- once connected to your VPS via SSH, make sure Docker is installed with `docker --version`
 
 
-
-@19/24
+@20/24
 ---
 EOF
