@@ -173,16 +173,37 @@ version: '3.8'
 
 services:
   frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
 
-  backend: 
+    ports:
+      - "5173:5173"
+
+    volumes:
+      - .:/myReactApp
+      - /myReactApp/node_modules
+
+    env_file:
+      - .env
+
+  backend:
+    ...
+    whatever code you need for your backend
+    ...
 ```
 
-## Explaining the docker-compose file
+- once your `docker-compose.yml` file is ready, run `docker compose up`
+  - this will build your frontend and backend services, handle the network config for you, and then it will create a Docker container in which your app will be running
 
-- 
+## Hosting our app on a VPS
+  
+There are VPS (Virtual Private Server) hosting providers: Hostinger, Linode, Ionos, Kamatera, etc.  
 
 
 
-@13/24
+
+
+@17/24
 ---
 EOF
