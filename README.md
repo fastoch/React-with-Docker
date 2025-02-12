@@ -244,7 +244,10 @@ You can run `ls` and `ls -a` to make sure all files have been properly transferr
 Since our app is very small, we won't need docker-compose.  
 - ssh into your VPS
 - cd into your remote project folder
-- run `docker buildx build --platform linux/amd64 -t app_name:dev`
+- run `docker buildx build --platform linux/amd64 -t app_name:dev .`
+- run `docker images` to make sure the building process completed successfully
+- once the image has been built, run your app with `docker run `
+  - the `-d` option is to run the image in detached mode so I can continue using my terminal 
 
 ---
 EOF
